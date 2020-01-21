@@ -15,11 +15,12 @@ script:
   - sudo apt-get update
   - sudo apt-get install atlassian-plugin-sdk
   - atlas-version
-  - ATLAS_OPTS="-Dallow.google.tracking=false" atlas-run-standalone --product confluence --version 6.15.0 --server localhost
+  - ATLAS_OPTS="-Dallow.google.tracking=false" atlas-run-standalone --product confluence --version 6.15.0 --server localhost &> conf.txt &
   - CONFLUENCE_PID=$!
   - >
     until $(curl --fail http://localhost:1990/confluence); do
-      sleep 5
+      sleep 20
+      tail conf.txt
     done
   - curl --fail http://localhost:1990/confluence/rest/api/space
   - python setup.py test --addopts "tests integration_tests --cov confluence"
