@@ -19,7 +19,7 @@ script:
   - CONFLUENCE_PID=$!
   - >
     until $(curl --fail http://localhost:1990/confluence); do
-      sleep 20
+      sleep 200
       tail conf.txt
     done
   - curl --fail http://localhost:1990/confluence/rest/api/space
