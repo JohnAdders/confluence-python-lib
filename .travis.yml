@@ -15,7 +15,7 @@ script:
   - sudo apt-get update
   - sudo apt-get install atlassian-plugin-sdk
   - atlas-version
-  - ATLAS_OPTS="-Dallow.google.tracking=false -DskipAllPrompts=true -Datlassian.dev.mode=false" atlas-run-standalone --product confluence --version 6.15.10 --server localhost --jvmargs "-Xms1g -Xmx2g -XX:MaxPermSize=1g -XX:-UseGCOverheadLimit" &> conf.txt &
+  - ATLAS_OPTS="-Dallow.google.tracking=false -DskipAllPrompts=true -Datlassian.dev.mode=false" atlas-run-standalone --product confluence --version 6.15.10 --server localhost --jvmargs "XX:MaxPermSize=256M -Xmx512m" &> conf.txt &
   - CONFLUENCE_PID=$!
   - >
     until $(curl --fail http://localhost:1990/confluence); do
