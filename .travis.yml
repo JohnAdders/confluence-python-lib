@@ -13,10 +13,9 @@ script:
   - sudo sh -c 'echo "deb https://packages.atlassian.com/debian/atlassian-sdk-deb/ stable contrib" >>/etc/apt/sources.list'
   - wget https://packages.atlassian.com/api/gpg/key/public
   - sudo apt-key add public
-  - sudo sh -c 'echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" >>/etc/apt/sources.list'
-  - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C2518248EEA14886
+  - sudo sudo add-apt-repository ppa:rpardini/adoptopenjdk
   - sudo apt-get update
-  - sudo apt-get install oracle-java8-installer
+  - sudo apt-get install adoptopenjdk-8-jdk-hotspot-installer
   - sudo apt-get install atlassian-plugin-sdk
   - atlas-version
   - ATLAS_OPTS="-Dallow.google.tracking=false" atlas-run-standalone --product confluence --version 6.15.0 --server localhost --jvmargs "-XX:MaxPermSize=256M -Xmx512m" &> conf.txt &
