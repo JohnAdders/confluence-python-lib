@@ -16,7 +16,8 @@ script:
   - sudo sudo add-apt-repository ppa:rpardini/adoptopenjdk -y
   - sudo apt-get update
   - sudo apt-get install atlassian-plugin-sdk adoptopenjdk-8-jdk-hotspot-installer
-  - update-java-alternatives --list
+  - sudo update-java-alternatives --set /usr/lib/jvm/adoptopenjdk-8-jdk-hotspot
+  - export JAVA_HOME="$(jrunscript -e 'java.lang.System.out.println(java.lang.System.getProperty("java.home"));')"
   - atlas-version
   - ATLAS_OPTS="-Dallow.google.tracking=false" atlas-run-standalone --product confluence --version 6.15.0 --server localhost --jvmargs "-XX:MaxPermSize=256M -Xmx512m" &> conf.txt &
   - CONFLUENCE_PID=$!
