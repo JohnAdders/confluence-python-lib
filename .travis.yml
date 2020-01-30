@@ -20,12 +20,11 @@ script:
   - export PATH=/usr/lib/jvm/adoptopenjdk-8-jdk-hotspot/bin:$PATH
   - export JAVA_HOME="$(jrunscript -e 'java.lang.System.out.println(java.lang.System.getProperty("java.home"));')"
   - atlas-version
-  - ATLAS_OPTS="-Dallow.google.tracking=false" atlas-run-standalone --product confluence --version 6.15.0 --server localhost --jvmargs "-XX:MaxPermSize=256M -Xmx512m" &> conf.txt &
+  - ATLAS_OPTS="-Dallow.google.tracking=false" atlas-run-standalone --product confluence --version 6.15.0 --server localhost" &>/dev/null &
   - CONFLUENCE_PID=$!
   - >
     until $(curl --fail http://localhost:1990/confluence); do
-      sleep 201
-      tail conf.txt
+      sleep 5
     done
   - curl --fail http://localhost:1990/confluence/rest/api/space
   - python setup.py test --addopts "tests integration_tests --cov confluence"
