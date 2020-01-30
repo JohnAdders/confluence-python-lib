@@ -1,5 +1,9 @@
+sudo: required
+dist: trusty
 language: python
 python: 3.6
+before_install:
+  - jdk_switcher use oraclejdk8
 install:
   - pip uninstall numpy -y
   - pip install bandit codecov mypy pycodestyle safety typing
