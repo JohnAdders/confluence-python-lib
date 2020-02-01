@@ -20,7 +20,7 @@ script:
   - export PATH=/usr/lib/jvm/adoptopenjdk-8-jdk-hotspot/bin:$PATH
   - export JAVA_HOME="$(jrunscript -e 'java.lang.System.out.println(java.lang.System.getProperty("java.home"));')"
   - atlas-version
-  - ATLAS_OPTS="-Dallow.google.tracking=false" atlas-run-standalone --product confluence --version 6.15.0 --server localhost &>/dev/null &
+  - ATLAS_OPTS="-Dallow.google.tracking=false" atlas-run-standalone --product confluence --version 6.15.0 --server localhost &>conf.txt &
   - CONFLUENCE_PID=$!
   - >
     until $(curl --fail http://localhost:1990/confluence); do
