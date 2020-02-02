@@ -29,9 +29,10 @@ script:
     done
   - curl --fail http://localhost:1990/confluence/rest/api/space
   - wget http://localhost:1990/confluence -o home.html
-  - cat home.html
-  - cat conf.txt
-  - cat amps-standalone-confluence-6.15.0/target/confluence-LATEST.log
+  - ps -aux
+  - tail -n 100 home.html
+  - tail -n 100 conf.txt
+  - tail -n 100 amps-standalone-confluence-6.15.0/target/confluence-LATEST.log
   - #python setup.py test --addopts "tests integration_tests --cov confluence"
   - kill -9 $CONFLUENCE_PID
   - rm -rf amps-standalone-confluence-6.15.0
