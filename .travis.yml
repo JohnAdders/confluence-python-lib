@@ -28,7 +28,11 @@ script:
       sleep 5
     done
   - curl --fail http://localhost:1990/confluence/rest/api/space
-  - python setup.py test --addopts "tests integration_tests --cov confluence"
+  - wget http://localhost:1990/confluence -o home.html
+  - cat home.html
+  - cat conf.txt
+  - cat amps-standalone-confluence-6.15.0/target/confluence-LATEST.log
+  - #python setup.py test --addopts "tests integration_tests --cov confluence"
   - kill -9 $CONFLUENCE_PID
   - rm -rf amps-standalone-confluence-6.15.0
 after_success:
